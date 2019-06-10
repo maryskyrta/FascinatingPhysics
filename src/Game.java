@@ -18,11 +18,12 @@ public class Game extends JFrame implements MouseListener {
 	private JFrame frame;
 	private static BufferedImage logoImage;
 	private JPanel panel;
+	private static Game game = null;
 
 	/**
 	 * Game constructor
 	 */
-	public Game() {
+	private Game() {
 		frame = this;
 		frame.setBounds(100, 100, 750, 600);
 		frame.setResizable(true);
@@ -40,9 +41,27 @@ public class Game extends JFrame implements MouseListener {
 
 	}
 
-	public static void main(String[] args) {
-		Game game = new Game();
-		game.setVisible(true);
+	/**
+	 * 
+	 * @return instance of a main frame
+	 */
+	public static Game getInstance() {
+		if (game == null)
+			game = new Game();
+		return game;
+	}
+
+	/**
+	 * Change panel to the new one
+	 * 
+	 * @param newPanel
+	 */
+	public void changePanel(JPanel newPanel) {
+		frame.remove(panel);
+		panel = newPanel;
+		panel.setVisible(true);
+		frame.add(panel);
+		frame.setVisible(true);
 	}
 
 	@Override
