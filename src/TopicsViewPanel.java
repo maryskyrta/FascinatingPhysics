@@ -10,6 +10,8 @@ public class TopicsViewPanel extends JPanel {
 	public TopicsViewPanel() {
 		JLabel title = new JLabel("Теми");
 		JButton returnToStart = new JButton("Назад");
+		JButton prevTopic = new JButton();
+		JButton nextTopic = new JButton();
 		returnToStart.addActionListener(new ActionListener() {
 
 			@Override
@@ -18,6 +20,9 @@ public class TopicsViewPanel extends JPanel {
 
 			}
 		});
+
+		this.add(prevTopic);
+		this.add(nextTopic);
 		this.add(title);
 		this.add(returnToStart);
 
