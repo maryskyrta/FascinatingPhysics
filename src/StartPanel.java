@@ -78,7 +78,7 @@ public class StartPanel extends JPanel {
 		settings.setFocusable(false);
 		settings.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		settings.setBorderPainted(false);
-		settings.setToolTipText("Натисніть щоб почати вивчати фізику");
+		settings.setToolTipText("Натисніть щоб перейти до налаштувань");
 		settings.setBackground(new Color(255, 153, 0));
 		settings.setForeground(Color.WHITE);
 		settings.addMouseListener(new MouseAdapter() {
@@ -111,7 +111,7 @@ public class StartPanel extends JPanel {
 		exit.setFocusable(false);
 		exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		exit.setBorderPainted(false);
-		exit.setToolTipText("Натисніть щоб почати вивчати фізику");
+		exit.setToolTipText("Натисніть щоб вийти з застосунку");
 		exit.setBackground(new Color(255, 0, 0));
 		exit.setForeground(Color.WHITE);
 		exit.addMouseListener(new MouseAdapter() {
