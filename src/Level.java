@@ -74,13 +74,10 @@ public class Level extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				im.removeAll();
 				try {
 					double ans = Double.parseDouble(userAnswer.getText());
-					if (ans < 0)
-						throw new NumberFormatException();
-					ActionAfterAnswer act = new ActionAfterAnswer(ans, 4200);
-					Game.getInstance().changePanel(act);
+					if (ans < 0) throw new NumberFormatException();
+					Game.getInstance().changePanel(new ActionAfterAnswer(ans, 4200));
 				} catch (NumberFormatException ex) {
 					 JOptionPane.showMessageDialog(null, "Будь ласка. введіть чилсо, яке більше або дорівнює 0.",
 								"Error", JOptionPane.ERROR_MESSAGE);

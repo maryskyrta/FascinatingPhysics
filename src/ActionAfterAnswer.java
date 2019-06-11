@@ -21,19 +21,13 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 	private int height = 600;
 	private int width =750;
 	private Timer timer;
-	private double answer;
-	private double rightAnswer;
 	private int finalWidth;
 	private int widthPath;
 	private int x;
 	
 	
 	public ActionAfterAnswer( double answer, double rightAnswer) {
-		x=100;
-		this.height = height;
-		this.width = width;
-		this.answer = answer;
-		this.rightAnswer = rightAnswer;      
+		x=100;    
 	    timer = new Timer(5, this);
 	    widthPath = width-x-110-(width/6);
 	    finalWidth = (int) (answer*(widthPath)/rightAnswer);
@@ -49,7 +43,6 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 		    g2d.setColor(Color.black);
 		    g.fillRect(0, 0, width, height);
 		    
-		    int widthIm = (width-20)/6;
 		    g2d.setColor(Color.white);
 		    g2d.setFont(new Font("Monospaced", Font.BOLD, 20));
 		    g2d.drawString("Магазин", 10, (height/2));
@@ -85,8 +78,8 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 				}
 				Game.getInstance().changePanel(new LoosePanel());
 			}
-			
-			TestLevel.visible();
+			setVisible(true);
+			Game.getInstance().visible();
 	  }
 
 
