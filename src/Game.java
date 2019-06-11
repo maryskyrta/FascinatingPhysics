@@ -15,6 +15,7 @@ import javax.swing.JPanel;
  */
 public class Game extends JFrame implements MouseListener {
 
+	private boolean soundEnabled = true;
 	private JFrame frame;
 	private static BufferedImage logoImage;
 	private JPanel panel;
@@ -62,6 +63,10 @@ public class Game extends JFrame implements MouseListener {
 		panel.setVisible(true);
 		frame.add(panel);
 		frame.setVisible(true);
+	}
+
+	public void setSoundMode(boolean sound) {
+		soundEnabled = sound;
 	}
 
 	@Override
