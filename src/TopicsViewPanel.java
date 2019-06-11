@@ -55,13 +55,20 @@ public class TopicsViewPanel extends JPanel {
 		gbc_prevTopic.gridy = 1;
 		this.add(prevTopic, gbc_prevTopic);
 
-		JPanel ChooseTopicPanel = new JPanel();
+		JPanel chooseTopicPanel = new TopicPreviewPanel();
+		chooseTopicPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		chooseTopicPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Topic chosen");
+			}
+		});
 		GridBagConstraints gbc_ChooseTopicPanel = new GridBagConstraints();
-		gbc_ChooseTopicPanel.insets = new Insets(0, 0, 5, 5);
+		gbc_ChooseTopicPanel.insets = new Insets(0, 0, 0, 0);
 		gbc_ChooseTopicPanel.fill = GridBagConstraints.BOTH;
 		gbc_ChooseTopicPanel.gridx = 1;
 		gbc_ChooseTopicPanel.gridy = 1;
-		add(ChooseTopicPanel, gbc_ChooseTopicPanel);
+		add(chooseTopicPanel, gbc_ChooseTopicPanel);
 		JButton nextTopic = new JButton();
 		nextTopic.setToolTipText("До наступної теми");
 		nextTopic.setFont(new Font("Monospaced", Font.BOLD, 50));
@@ -90,11 +97,11 @@ public class TopicsViewPanel extends JPanel {
 		this.add(nextTopic, gbc_nextTopic);
 		JLabel title = new JLabel("Теми");
 		title.setForeground(new Color(255, 255, 255));
-		title.setFont(new Font("Monospaced", Font.PLAIN, 26));
+		title.setFont(new Font("Monospaced", Font.PLAIN, 34));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_title = new GridBagConstraints();
 		gbc_title.anchor = GridBagConstraints.CENTER;
-		gbc_title.insets = new Insets(15, 15, 5, 5);
+		gbc_title.insets = new Insets(0, 0, 5, 5);
 		gbc_title.gridx = 1;
 		gbc_title.gridy = 0;
 		this.add(title, gbc_title);
@@ -125,7 +132,7 @@ public class TopicsViewPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_returnToStart = new GridBagConstraints();
-		gbc_returnToStart.insets = new Insets(0, 0, 5, 5);
+		gbc_returnToStart.insets = new Insets(5, 5, 5, 5);
 		gbc_returnToStart.anchor = GridBagConstraints.NORTHWEST;
 		gbc_returnToStart.gridx = 0;
 		gbc_returnToStart.gridy = 0;
