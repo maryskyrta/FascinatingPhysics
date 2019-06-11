@@ -60,7 +60,9 @@ public class TopicsViewPanel extends JPanel {
 		chooseTopicPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				// Game.getInstance().changePanel(new TheoryPanel());
+				// Game.getInstance().changePanel(new Level());
 			}
 		});
 		GridBagConstraints gbc_ChooseTopicPanel = new GridBagConstraints();

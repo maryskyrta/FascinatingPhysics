@@ -1,4 +1,4 @@
-import java.awt.event.MouseEvent;
+import java.awt.event.MouseEvent; 
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -62,6 +62,10 @@ public class Game extends JFrame implements MouseListener {
 		panel = newPanel;
 		panel.setVisible(true);
 		frame.add(panel);
+		frame.setVisible(true);
+	}
+	
+	public void visible() {
 		frame.setVisible(true);
 	}
 
