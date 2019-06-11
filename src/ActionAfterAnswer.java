@@ -18,8 +18,8 @@ import javax.swing.Timer;
 
 public class ActionAfterAnswer extends JPanel implements ActionListener{
 	
-	private int height = 600;
-	private int width =750;
+	private int height = 400;
+	private int width =700;
 	private Timer timer;
 	private int finalWidth;
 	private int widthPath;
@@ -61,9 +61,10 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 			}
 			
 			if(x>=finalWidth+100) {
+				g2d.drawString("Стоп", width/2-5, (height/4));
 				timer.stop();
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(2500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -71,11 +72,6 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 				else Game.getInstance().changePanel(new LoosePanel());
 				
 			} else if(x>=width) {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 				Game.getInstance().changePanel(new LoosePanel());
 			}
 			setVisible(true);

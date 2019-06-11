@@ -1,11 +1,14 @@
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -56,6 +59,39 @@ public class WinPanel extends JPanel {
 			}
 		});
 		
+		button.setBackground(new Color(255, 153, 0));
+		button.setFocusable(false);
+		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		button.setBorderPainted(false);
+		button.setForeground(Color.WHITE);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				button.setBackground(new Color(230, 138, 0));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(new Color(255, 153, 0));
+			}
+		});
+		
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				button_1.setBackground(new Color(46, 184, 46));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button_1.setBackground(new Color(51, 204, 51));
+			}
+		});
+		button_1.setFocusable(false);
+		button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		button_1.setBorderPainted(false);
+		button_1.setBackground(new Color(51, 204, 51));
+		button_1.setForeground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

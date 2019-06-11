@@ -26,7 +26,7 @@ import java.awt.Cursor;
 
 public class Level extends JPanel {
 	private JTextField userAnswer;
-	static String taskStr = "Щоб доїхати од магазину потрібно здолати 2500 м, в до музичного театру в тому самому напрямку -- "
+	static String taskStr = "Щоб доїхати до магазину від дому потрібно здолати 2500 м, в до музичного театру в тому самому напрямку -- "
 			+ "6700 м. Який шлях проїде машина від магазину до театру?";
 
 	/**
@@ -70,39 +70,25 @@ public class Level extends JPanel {
 
 		JPanel im = new JPanel();
 		im.setBackground(new Color(0, 0, 0));
-		sendAnswer.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					double ans = Double.parseDouble(userAnswer.getText());
-					if (ans < 0) throw new NumberFormatException();
-					Game.getInstance().changePanel(new ActionAfterAnswer(ans, 4200));
-				} catch (NumberFormatException ex) {
-					 JOptionPane.showMessageDialog(null, "Будь ласка. введіть чилсо, яке більше або дорівнює 0.",
-								"Error", JOptionPane.ERROR_MESSAGE);
-				}
-
-			}
-		});
+		
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(248, Short.MAX_VALUE)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(im, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(task, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(36, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(208)
 					.addComponent(expectedLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(sendAnswer)
-					.addGap(178))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(im, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(task, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
-					.addContainerGap(26, Short.MAX_VALUE))
+					.addContainerGap(186, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -110,24 +96,45 @@ public class Level extends JPanel {
 					.addGap(23)
 					.addComponent(task, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 					.addGap(8)
-					.addComponent(im, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-					.addGap(32)
+					.addComponent(im, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(expectedLabel)
 						.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(sendAnswer))
-					.addGap(40))
+					.addGap(79))
 		);
 		setLayout(groupLayout);
 
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File("static/2.png"));
+			myPicture = ImageIO.read(new File("static/3.png"));
 			Image dimg = myPicture.getScaledInstance(688, 301, Image.SCALE_SMOOTH);
 			JLabel picLabel = new JLabel(new ImageIcon(dimg));
 			im.add(picLabel);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		sendAnswer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					double ans = Double.parseDouble(userAnswer.getText());
+					if (ans < 0) throw new NumberFormatException();
+					im.removeAll();
+					sendAnswer.setVisible(false);
+					im.setVisible(true);
+					Game.getInstance().visible();
+					im.add(new ActionAfterAnswer(ans, 4200));
+					
+				} catch (NumberFormatException ex) {
+					 JOptionPane.showMessageDialog(null, "Будь ласка. введіть чилсо, яке більше або дорівнює 0.",
+								"Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
+		});
 	}
 }
