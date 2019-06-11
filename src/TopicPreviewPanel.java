@@ -24,14 +24,14 @@ public class TopicPreviewPanel extends JPanel {
 
 		JLabel logo = new JLabel("");
 		logo.setBackground(new Color(0, 0, 0));
-		logo.setIcon(new ImageIcon("static/mechanics.png"));
+		logo.setIcon(new ImageIcon("static/circles.jpg"));
 		GridBagConstraints gbc_logo = new GridBagConstraints();
 		gbc_logo.insets = new Insets(0, 0, 5, 0);
 		gbc_logo.gridx = 0;
 		gbc_logo.gridy = 0;
 		add(logo, gbc_logo);
 
-		JLabel lblNewLabel = new JLabel("Mechanics");
+		JLabel lblNewLabel = new JLabel("Рух по колу");
 		lblNewLabel.setForeground(new Color(255, 153, 0));
 		lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 26));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
