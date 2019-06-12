@@ -233,7 +233,11 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var4.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					try {
+						Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					} catch (IndexOutOfBoundsException ex) {
+
+					}
 				else {
 					var4.setBackground(new Color(255, 0, 0));
 					var4Wrong = true;

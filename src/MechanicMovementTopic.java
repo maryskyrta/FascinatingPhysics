@@ -21,7 +21,8 @@ public class MechanicMovementTopic extends Topic {
 	}
 
 	public static JPanel getNextPanel() {
-		if (currentTask > tests.length) {
+		if (currentTask >= tests.length) {
+			// Game.getInstance().changePanel(new LevelPassedPanel());
 			// TODO add levels
 		}
 		currentTask++;
