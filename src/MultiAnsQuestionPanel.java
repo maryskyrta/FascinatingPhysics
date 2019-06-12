@@ -75,7 +75,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 		questionText.setEnabled(false);
 		questionText.setBorder(null);
 		questionText.setEditable(false);
-		questionText.setForeground(new Color(255, 204, 51));
+		questionText.setForeground(new Color(255, 153, 102));
 		questionText.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		GridBagConstraints gbc_questionText = new GridBagConstraints();
 		gbc_questionText.insets = new Insets(0, 0, 5, 0);
@@ -233,7 +233,11 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var4.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					try {
+						Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					} catch (IndexOutOfBoundsException ex) {
+
+					}
 				else {
 					var4.setBackground(new Color(255, 0, 0));
 					var4Wrong = true;
