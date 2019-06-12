@@ -26,20 +26,25 @@ import java.awt.Cursor;
 
 public class Level extends JPanel {
 	private JTextField userAnswer;
-	static String taskStr = "Щоб доїхати до магазину від дому потрібно здолати 2500 м, в до музичного театру в тому самому напрямку -- "
-			+ "6700 м. Який шлях проїде машина від магазину до театру?";
+	private static String taskString;
+	private static String img;
+	private double rightAnswer;
 
 	/**
 	 * Create the panel.
 	 */
-	public Level() {
+	public Level(String taskString, String img, double rightAnswer) {
+		this.taskString = taskString;
+		this.img = img;
+		this.rightAnswer = rightAnswer;
+		
 		setBackground(Color.BLACK);
 
 		JTextPane task = new JTextPane();
 		task.setForeground(new Color(255, 255, 255));
 		task.setBackground(new Color(0, 0, 0));
 		task.setFont(new Font("Monospaced", Font.BOLD, 16));
-		task.setText(taskStr);
+		task.setText(this.taskString);
 
 		userAnswer = new JTextField();
 		userAnswer.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -108,7 +113,7 @@ public class Level extends JPanel {
 
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File("static/3.png"));
+			myPicture = ImageIO.read(new File(this.img));
 			Image dimg = myPicture.getScaledInstance(688, 301, Image.SCALE_SMOOTH);
 			JLabel picLabel = new JLabel(new ImageIcon(dimg));
 			im.add(picLabel);
@@ -127,7 +132,7 @@ public class Level extends JPanel {
 					sendAnswer.setVisible(false);
 					im.setVisible(true);
 					Game.getInstance().visible();
-					im.add(new ActionAfterAnswer(ans, 4200));
+					im.add(new ActionAfterAnswer(ans, rightAnswer));
 					
 				} catch (NumberFormatException ex) {
 					 JOptionPane.showMessageDialog(null, "Будь ласка. введіть чилсо, яке більше або дорівнює 0.",

@@ -56,7 +56,7 @@ public class LoosePanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game.getInstance().changePanel(new Level());
+				LevelChenger.goLevel();
 			}
 		});
 		

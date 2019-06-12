@@ -24,6 +24,8 @@ public class MechanicMovementTopic extends Topic {
 		if (currentTask >= tests.length) {
 			// Game.getInstance().changePanel(new LevelPassedPanel());
 			// TODO add levels
+			LevelChenger.levelUp();
+			LevelChenger.goLevel();
 		}
 		currentTask++;
 		return new MultiAnsQuestionPanel(tests[currentTask - 1]);

@@ -93,6 +93,8 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				//LevelChenger.goLevel();
 				if (Game.currentTopic == 0)
 					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
 			}
