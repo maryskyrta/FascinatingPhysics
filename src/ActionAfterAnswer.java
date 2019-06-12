@@ -203,7 +203,7 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 	    g2d.drawString("Театр", width-90, (height/2));
 	    g2d.drawLine(100, height/2, width-110, height/2);
 	    
-	    x+=3;
+	    x+=7;
 	    BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("static/car.png"));
