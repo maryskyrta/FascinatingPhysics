@@ -15,13 +15,16 @@ import javax.swing.JPanel;
  */
 public class Game extends JFrame implements MouseListener {
 
+	public static TheoryPanel theoryPanel;
 	private boolean soundEnabled = true;
 	private JFrame frame;
 	private static BufferedImage logoImage;
 	private JPanel panel;
 	private static Game game = null;
 	public static Topic[] topics = { new MechanicMovementTopic("Механічний рух", "static/mechanics.png"),
-			new CircleMovementTopic("Рух по колу", "static/lock.png") };
+			new CircleMovementTopic("Рух по колу", "static/lock.png"),
+			new FluctuationsMovementTopic("Коливальний рух", "static/lock.png") };
+	public static String[] theoryPaths = { "static/mechmovtheory.png" };
 	public static int currentTopic = 0;
 
 	/**

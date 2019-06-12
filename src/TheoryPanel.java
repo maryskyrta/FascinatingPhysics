@@ -20,7 +20,7 @@ public class TheoryPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TheoryPanel() {
+	public TheoryPanel(String name, String imagePath) {
 		setBackground(new Color(0, 0, 0));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 80, 640, 50 };
@@ -60,7 +60,7 @@ public class TheoryPanel extends JPanel {
 		gbc_returnToStart.gridx = 0;
 		gbc_returnToStart.gridy = 0;
 		this.add(returnToTopics, gbc_returnToStart);
-		JLabel title = new JLabel("Механічний рух");
+		JLabel title = new JLabel(name);
 		title.setForeground(new Color(255, 255, 255));
 		title.setFont(new Font("Monospaced", Font.PLAIN, 34));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,7 +72,7 @@ public class TheoryPanel extends JPanel {
 		this.add(title, gbc_title);
 
 		JLabel topicInfo = new JLabel("");
-		topicInfo.setIcon(new ImageIcon("static/mechmovtheory.png"));
+		topicInfo.setIcon(new ImageIcon(imagePath));
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.insets = new Insets(0, 0, 5, 5);
 		gbc_label.gridx = 1;
@@ -93,7 +93,8 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game.getInstance().changePanel(new StartPanel());
+				if (Game.currentTopic == 0)
+					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
 			}
 		});
 		button.addMouseListener(new MouseAdapter() {
