@@ -55,7 +55,8 @@ public class WinPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game.getInstance().changePanel(new Level());
+				LevelChenger.levelUp();
+				LevelChenger.goLevel();;
 			}
 		});
 		

@@ -93,7 +93,7 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game.getInstance().changePanel(new StartPanel());
+			LevelChenger.goLevel();
 			}
 		});
 		button.addMouseListener(new MouseAdapter() {
