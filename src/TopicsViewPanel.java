@@ -36,6 +36,8 @@ public class TopicsViewPanel extends JPanel {
 		prevTopic.setFocusable(false);
 		prevTopic.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		prevTopic.setBorderPainted(false);
+		if (Game.currentTopic == 0)
+			prevTopic.setVisible(false);
 		prevTopic.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -47,6 +49,15 @@ public class TopicsViewPanel extends JPanel {
 				prevTopic.setForeground(new Color(204, 0, 255));
 			}
 		});
+		prevTopic.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Game.currentTopic--;
+				Game.getInstance().changePanel(new TopicsViewPanel());
+
+			}
+		});
 
 		GridBagConstraints gbc_prevTopic = new GridBagConstraints();
 		gbc_prevTopic.anchor = GridBagConstraints.WEST;
@@ -55,13 +66,13 @@ public class TopicsViewPanel extends JPanel {
 		gbc_prevTopic.gridy = 1;
 		this.add(prevTopic, gbc_prevTopic);
 
-		JPanel chooseTopicPanel = new TopicPreviewPanel();
+		JPanel chooseTopicPanel = new TopicPreviewPanel(Game.topics[Game.currentTopic]);
 		chooseTopicPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		chooseTopicPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				// Game.getInstance().changePanel(new TheoryPanel());
+				// Game.getInstance().changePanel(chooseTopicPanel));
+				Game.getInstance().changePanel(new TheoryPanel());
 				// Game.getInstance().changePanel(new Level());
 			}
 		});
@@ -80,6 +91,8 @@ public class TopicsViewPanel extends JPanel {
 		nextTopic.setFocusable(false);
 		nextTopic.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		nextTopic.setBorderPainted(false);
+		if (Game.currentTopic == Game.topics.length - 1)
+			nextTopic.setVisible(false);
 		nextTopic.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -89,6 +102,15 @@ public class TopicsViewPanel extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				nextTopic.setForeground(new Color(204, 0, 255));
+			}
+		});
+		nextTopic.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Game.currentTopic++;
+				Game.getInstance().changePanel(new TopicsViewPanel());
+
 			}
 		});
 		GridBagConstraints gbc_nextTopic = new GridBagConstraints();

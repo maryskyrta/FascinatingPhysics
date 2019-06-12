@@ -1,4 +1,4 @@
-import java.awt.event.MouseEvent; 
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,6 +20,9 @@ public class Game extends JFrame implements MouseListener {
 	private static BufferedImage logoImage;
 	private JPanel panel;
 	private static Game game = null;
+	public static Topic[] topics = { new MechanicMovementTopic("Механічний рух", "static/mechanics.png"),
+			new CircleMovementTopic("Рух по колу", "static/lock.png") };
+	public static int currentTopic = 0;
 
 	/**
 	 * Game constructor
@@ -64,7 +67,7 @@ public class Game extends JFrame implements MouseListener {
 		frame.add(panel);
 		frame.setVisible(true);
 	}
-	
+
 	public void visible() {
 		frame.setVisible(true);
 	}
