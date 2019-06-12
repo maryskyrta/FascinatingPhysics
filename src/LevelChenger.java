@@ -11,7 +11,7 @@ public class LevelChenger {
 	
 	private static String img1 = "static/3.png";
 	private static String img2 = "static/2.png";
-	private static int currentLevel = 2;
+	private static int currentLevel = 0;
 	
 	public static void levelUp() {
 		currentLevel++;

@@ -92,13 +92,15 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 			sinA = smallerH/smallerC;
 			
 			if(finalWidth>biggerC) {
-				double h =  -biggerC;
+				double h =  finalWidth-biggerC;
 				double y = sinA*h;
-				finalX = beginBiggerArrX-Math.sqrt(h*h-y*y)-ballSize/2;
+				finalX = beginBiggerArrX-Math.sqrt(h*h-y*y)-ballSize/2-biggerA;
 			} else {
 				double y = sinB*finalWidth;
 				finalX = beginBiggerArrX-Math.sqrt(finalWidth*finalWidth-y*y)-ballSize/2;
 			}
+			
+			
 			break;
 		default:
 			break;
@@ -147,14 +149,26 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
         
         if(ballX<=finalX) {
         	timer.stop();
-//        	try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+        	try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
         	if(finalWidth == widthPath) Game.getInstance().changePanel(new WinPanel(height, width));
 			else Game.getInstance().changePanel(new LoosePanel());
+        	return;
         }
+        
+        if(ballX<endSmallerArrX-50) {
+        	timer.stop();
+        	try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+        	Game.getInstance().changePanel(new LoosePanel());
+        	return;
+		}
         
         //painting ball
         g2d.setColor(Color.red);
@@ -211,9 +225,10 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			return;
 		} else if(x>=width) {
 			Game.getInstance().changePanel(new LoosePanel());
+			return;
 		}
 	}
 
