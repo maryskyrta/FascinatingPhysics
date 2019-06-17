@@ -110,7 +110,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var1.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
+					processCorrectAnswer();
 				else {
 					var1.setBackground(new Color(255, 0, 0));
 					var1Wrong = true;
@@ -148,7 +148,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var2.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
+					processCorrectAnswer();
 				else {
 					var2.setBackground(new Color(255, 0, 0));
 					var2Wrong = true;
@@ -186,7 +186,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var3.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
+					processCorrectAnswer();
 				else {
 					var3.setBackground(new Color(255, 0, 0));
 					var3Wrong = true;
@@ -225,11 +225,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var4.getText().equals(question.getCorrectAnswer()))
-					try {
-						Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
-					} catch (IndexOutOfBoundsException ex) {
-
-					}
+					processCorrectAnswer();
 				else {
 					var4.setBackground(new Color(255, 0, 0));
 					var4Wrong = true;
@@ -252,6 +248,11 @@ public class MultiAnsQuestionPanel extends JPanel {
 		});
 		panel.add(var4);
 
+	}
+
+	private void processCorrectAnswer() {
+		if (Game.currentTopic == 0)
+			MechanicMovementTopic.getNextPanel(true);
 	}
 
 }

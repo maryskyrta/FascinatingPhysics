@@ -89,7 +89,7 @@ public class TheoryPanel extends JPanel {
 
 		JButton button = new JButton("Перейти до практики");
 		button.setToolTipText("Почати проходження рівнів");
-		button.setBackground(new Color(255, 153, 51));
+		button.setBackground(new Color(255, 140, 26));
 		button.setForeground(new Color(255, 255, 255));
 		button.setFocusable(false);
 		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -100,7 +100,7 @@ public class TheoryPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// if (Game.currentTopic == 0)
-				Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(false));
+				MechanicMovementTopic.getNextPanel(false);
 			}
 		});
 		button.addMouseListener(new MouseAdapter() {
@@ -111,7 +111,7 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button.setBackground(new Color(255, 153, 51));
+				button.setBackground(new Color(255, 140, 26));
 			}
 		});
 		GridBagConstraints gbc_button = new GridBagConstraints();

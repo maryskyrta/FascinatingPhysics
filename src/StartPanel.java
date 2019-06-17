@@ -62,7 +62,7 @@ public class StartPanel extends JPanel {
 		lblFascinatinphysics.setForeground(new Color(255, 255, 255));
 		lblFascinatinphysics.setFont(new Font("Monospaced", Font.PLAIN, 34));
 		GridBagConstraints gbc_lblFascinatinphysics = new GridBagConstraints();
-		gbc_lblFascinatinphysics.insets = new Insets(10, 10, 10, 10);
+		gbc_lblFascinatinphysics.insets = new Insets(10, 10, 10, 20);
 		gbc_lblFascinatinphysics.gridx = 0;
 		gbc_lblFascinatinphysics.gridy = 0;
 		add(lblFascinatinphysics, gbc_lblFascinatinphysics);
