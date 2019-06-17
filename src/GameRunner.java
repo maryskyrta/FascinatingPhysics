@@ -1,7 +1,7 @@
 
 /**
  * 
- * @author Masha. class that runs the game.
+ * @author Masha. Class that runs the game.
  *
  */
 public class GameRunner {

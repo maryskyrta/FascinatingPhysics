@@ -53,7 +53,7 @@ public class ActionAfterAnswer extends JPanel implements ActionListener{
 	
 	
 	public ActionAfterAnswer( double answer, double rightAnswer) {
-		curLevel = LevelChenger.getLevel();
+		curLevel = LevelChanger.getLevel();
 		
 		switch (curLevel) {
 		case 1:

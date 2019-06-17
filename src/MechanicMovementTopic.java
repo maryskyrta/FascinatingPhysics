@@ -20,15 +20,21 @@ public class MechanicMovementTopic extends Topic {
 		super(name, imagePath);
 	}
 
-	public static JPanel getNextPanel() {
+	/**
+	 * 
+	 * @param answered
+	 * @return next question panel if the question was answered else return current
+	 *         question panel
+	 */
+	public static JPanel getNextPanel(boolean answered) {
 		if (currentTask >= tests.length) {
-			// Game.getInstance().changePanel(new LevelPassedPanel());
-			// TODO add levels
-			LevelChenger.levelUp();
-			LevelChenger.goLevel();
+			LevelChanger.levelUp();
+			LevelChanger.goLevel();
 		}
-		currentTask++;
-		return new MultiAnsQuestionPanel(tests[currentTask - 1]);
+		if (answered)
+			currentTask++;
+		return new MultiAnsQuestionPanel(tests[currentTask]);
+
 	}
 
 }

@@ -14,24 +14,21 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * 
+ * @author Masha. Panel for choosing right answer from multiple choices
+ *
+ */
 public class MultiAnsQuestionPanel extends JPanel {
 	private boolean var1Wrong = false, var2Wrong = false, var3Wrong = false, var4Wrong = false;
 
-	/**
-	 * Create the panel.
-	 */
 	public MultiAnsQuestionPanel(TestQuestion question) {
 		setBackground(Color.BLACK);
-		// setSize(740, 590);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0 };
 		gridBagLayout.columnWeights = new double[] { 1.0 };
 		gridBagLayout.columnWidths = new int[] { 720 };
 		gridBagLayout.rowHeights = new int[] { 50, 400, 150 };
-		/*
-		 * gridBagLayout.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		 * gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		 */
 		setLayout(gridBagLayout);
 
 		JButton returnToTheory = new JButton("Назад");
@@ -51,7 +48,8 @@ public class MultiAnsQuestionPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game.getInstance().changePanel(Game.theoryPanel);
+				int cur = Game.currentTopic;
+				Game.getInstance().changePanel(new TheoryPanel(Game.topics[cur].getName(), Game.theoryPaths[cur]));
 			}
 		});
 		returnToTheory.addMouseListener(new MouseAdapter() {
@@ -81,9 +79,6 @@ public class MultiAnsQuestionPanel extends JPanel {
 		gbc_questionText.insets = new Insets(0, 0, 5, 0);
 		gbc_questionText.gridx = 0;
 		gbc_questionText.gridy = 1;
-
-		// gbc_questionText.gridwidth = 2;
-		// gbc_questionText.fill = GridBagConstraints.BOTH;
 		add(questionText, gbc_questionText);
 
 		JPanel panel = new JPanel();
@@ -115,7 +110,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var1.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
 				else {
 					var1.setBackground(new Color(255, 0, 0));
 					var1Wrong = true;
@@ -135,7 +130,6 @@ public class MultiAnsQuestionPanel extends JPanel {
 					var1.setBackground(new Color(255, 204, 0));
 			}
 		});
-		// add(var1, gbc_var1);
 		panel.add(var1);
 
 		JButton var2 = new JButton(question.getAns2());
@@ -154,7 +148,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var2.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
 				else {
 					var2.setBackground(new Color(255, 0, 0));
 					var2Wrong = true;
@@ -174,7 +168,6 @@ public class MultiAnsQuestionPanel extends JPanel {
 					var2.setBackground(new Color(255, 204, 0));
 			}
 		});
-		// add(var2, gbc_var2);
 		panel.add(var2);
 
 		JButton var3 = new JButton(question.getAns3());
@@ -193,7 +186,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (var3.getText().equals(question.getCorrectAnswer()))
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
 				else {
 					var3.setBackground(new Color(255, 0, 0));
 					var3Wrong = true;
@@ -214,7 +207,6 @@ public class MultiAnsQuestionPanel extends JPanel {
 					var3.setBackground(new Color(255, 204, 0));
 			}
 		});
-		// add(var3, gbc_var3);
 		panel.add(var3);
 
 		JButton var4 = new JButton(question.getAns4());
@@ -234,7 +226,7 @@ public class MultiAnsQuestionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (var4.getText().equals(question.getCorrectAnswer()))
 					try {
-						Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+						Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(true));
 					} catch (IndexOutOfBoundsException ex) {
 
 					}
@@ -259,7 +251,6 @@ public class MultiAnsQuestionPanel extends JPanel {
 			}
 		});
 		panel.add(var4);
-		// add(var4, gbc_var4);
 
 	}
 

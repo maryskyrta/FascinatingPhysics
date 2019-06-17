@@ -1,5 +1,5 @@
 
-public class LevelChenger {
+public class LevelChanger {
 
 	private static String task1 = "Щоб доїхати до магазину від дому потрібно здолати 2500 м, в до музичного театру в тому самому напрямку -- "
 			+ "6700 м. Який шлях проїде машина від магазину до театру?";

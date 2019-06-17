@@ -15,6 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author Masha. Class that displays theory.
+ *
+ */
 public class TheoryPanel extends JPanel {
 
 	/**
@@ -54,12 +59,12 @@ public class TheoryPanel extends JPanel {
 				returnToTopics.setBackground(new Color(0, 51, 153));
 			}
 		});
-		GridBagConstraints gbc_returnToStart = new GridBagConstraints();
-		gbc_returnToStart.insets = new Insets(5, 5, 5, 5);
-		gbc_returnToStart.anchor = GridBagConstraints.NORTHWEST;
-		gbc_returnToStart.gridx = 0;
-		gbc_returnToStart.gridy = 0;
-		this.add(returnToTopics, gbc_returnToStart);
+		GridBagConstraints gbc_returnToTopics = new GridBagConstraints();
+		gbc_returnToTopics.insets = new Insets(5, 5, 5, 5);
+		gbc_returnToTopics.anchor = GridBagConstraints.NORTHWEST;
+		gbc_returnToTopics.gridx = 0;
+		gbc_returnToTopics.gridy = 0;
+		this.add(returnToTopics, gbc_returnToTopics);
 		JLabel title = new JLabel(name);
 		title.setForeground(new Color(255, 255, 255));
 		title.setFont(new Font("Monospaced", Font.PLAIN, 34));
@@ -71,6 +76,7 @@ public class TheoryPanel extends JPanel {
 		gbc_title.gridy = 0;
 		this.add(title, gbc_title);
 
+		// Theory image loading
 		JLabel topicInfo = new JLabel("");
 		topicInfo.setIcon(new ImageIcon(imagePath));
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -93,10 +99,8 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				//LevelChenger.goLevel();
-				if (Game.currentTopic == 0)
-					Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel());
+				// if (Game.currentTopic == 0)
+				Game.getInstance().changePanel(MechanicMovementTopic.getNextPanel(false));
 			}
 		});
 		button.addMouseListener(new MouseAdapter() {

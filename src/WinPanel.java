@@ -55,8 +55,8 @@ public class WinPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LevelChenger.levelUp();
-				LevelChenger.goLevel();;
+				LevelChanger.levelUp();
+				LevelChanger.goLevel();;
 			}
 		});
 		

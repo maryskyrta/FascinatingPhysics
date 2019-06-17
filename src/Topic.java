@@ -1,6 +1,6 @@
 /**
  * 
- * Class for storing topic
+ * Common class for all topics. Stores name and path to topic image.
  *
  */
 public class Topic {
