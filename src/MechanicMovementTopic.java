@@ -12,14 +12,19 @@ public class MechanicMovementTopic extends Topic {
 					"руху", "спокою", "збентеження", "коливання", "руху"),
 			new TestQuestion("Тіло, відносно якого фіксується рух іншого тіла,\n називається ", "рухомим тілом",
 					"тілом спокою", "тілом руху", "тілом відліку", "тілом відліку") };
-	private static String[] inputAnswerTasks = {
+	public static String[] inputAnswerTasks = {
 			"Щоб доїхати до магазину від дому потрібно здолати 2500 м, а до музичного театру в тому самому напрямку - "
 					+ "6700 м. Який шлях проїде машина від магазину до театру?",
-			"Після того як м'яч випустили на висоті 1.5 м, " + "він підскочив на висоту 1м. Який шлях пройшов м'яч?" };
-	private static double rightAnswers[] = { 4200, 2.5 };
-	private static String[] levelImages = { "static/3.png", "static/4.png" };
-	private static int currentTestTask = 0;
-	private static int currentInputTask = 0;
+			"Після того як м'яч випустили на висоті 1.5 м, " + "він підскочив на висоту 1м. Який шлях пройшов м'яч?",
+			"Літак пролетів 1200 км за 2 год. З якою швидкістю летів літак? (Одиниці виміру відповіді: км/год) ",
+			"Потяг їде зі швидкістю 180 км/год. Який шлях долає потяг за 1 хв. (Одиниці виміру відповіді: м)",
+			"Літак вилетів з аеропорту в південному напрямку, так він пролетів 2500 км. Потім літак повернув на схід і "
+			+ "пролетів в цьому напрямку 6000 км. Згодом літак знову повернув, але цього разу на північ і пролетів так ще 2500 км. "
+			+ "Яку відстань подолав літак?"};
+	public static double rightAnswers[] = { 4200, 2.5, 600, 3000, 6000 };
+	public static String[] levelImages = { "static/3.png", "static/4.png", "static/5.png", "static/6.png", "static/7.png" };
+	private static int currentTestTask = 4;
+	private static int currentInputTask = 4;
 
 	/**
 	 * HINTS TEXT
@@ -49,7 +54,7 @@ public class MechanicMovementTopic extends Topic {
 	 * Change level to the next one
 	 */
 	public static void getNextLevel() {
-		if (currentInputTask < 2)
+		if (currentInputTask < 5)
 			Game.getInstance().changePanel(new Level(inputAnswerTasks[currentInputTask], levelImages[currentInputTask],
 					rightAnswers[currentInputTask]));
 		else

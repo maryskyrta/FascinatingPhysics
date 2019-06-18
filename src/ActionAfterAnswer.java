@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class ActionAfterAnswer extends JPanel implements ActionListener {
+	
+	private double answer;
+	private double rightAnswer;
 
 	private int height = 400;
 	private int width = 700;
@@ -25,6 +28,7 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	private double finalWidth;
 	private double widthPath;
 	private int x;
+	private int y;
 	private int curLevel;
 
 	private double indent;
@@ -49,10 +53,21 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	private double sinA;
 	private double bigC = 0;
 	private double finalX;
+	
+	private double widthSpace;
+	private double yDist;
+	private boolean first = true;
+	private boolean second = false;
+	private boolean third = false;
+	private double distX;
+	
 
 	public ActionAfterAnswer(double answer, double rightAnswer) {
-		curLevel = MechanicMovementTopic.getLevel();
-
+		this.answer = answer;
+		this.rightAnswer = rightAnswer;
+		
+		//curLevel = MechanicMovementTopic.getLevel();
+        curLevel = 4;
 		switch (curLevel) {
 		case 0:
 			x = 100;
@@ -99,6 +114,29 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			}
 
 			break;
+		case 2:
+			x = 50;
+			timer = new Timer(5, this);
+			widthPath = width - 100;
+			double ans = 2*answer;
+			finalWidth = (int) (ans * (widthPath) / 1200);
+			break;
+		case 3:
+			x = width-50 - width/6;
+			timer = new Timer(5, this);
+			widthPath = width - 100;
+			finalWidth = (int) (answer * (widthPath) / rightAnswer);
+			break;
+		case 4:
+			timer = new Timer(5, this);
+			y=100;
+			yDist = height-200;
+			widthPath = 60*yDist/25;
+			widthSpace = (width-widthPath)/2;
+			
+			finalWidth = (int) (answer * (widthPath) / rightAnswer);
+			
+			break;
 		default:
 			break;
 		}
@@ -122,11 +160,20 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		case 1:
 			drawBallAnimation(g2d);
 			break;
+		case 2:
+			drawPlainAnimation(g2d);
+			break;
+		case 3:
+			drawTrainAnimation(g2d);
+			break;
+		case 4:
+			drawPlain1Animation(g2d);
 		default:
 			break;
 		}
 		setVisible(true);
-		Game.getInstance().visible();
+		LevelTester.visible();
+		//Game.getInstance().visible();
 	}
 
 	private void drawBallAnimation(Graphics2D g2d) {
@@ -201,7 +248,7 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		x += 7;
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File("static/car.png"));
+			myPicture = ImageIO.read(new File("static/plain.png"));
 			Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
 			g2d.drawImage(dimg, x, height / 2 - height / 7, null);
 		} catch (IOException e) {
@@ -227,6 +274,200 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		}
 	}
 
+	
+	private void drawPlainAnimation(Graphics2D g2d) {
+
+		g2d.setColor(Color.white);
+		g2d.setFont(new Font("Monospaced", Font.BOLD, 20));
+		g2d.drawLine(50, height / 2, width - 50, height / 2);
+		g2d.drawString("v = "+answer+" км/год", 50, 50);
+		g2d.drawString("t = 2 год", 50, 65);
+		
+
+		x += 7;
+		double curS = (1200*(x+50))/widthPath;
+		if(curS>2*answer) g2d.drawString("s = "+(int)2*answer +" км", 50, 80);
+		else g2d.drawString("s = "+(int)curS +" км", 50, 80);
+		
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("static/plain.png"));
+			Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
+	
+			g2d.drawImage(dimg, x, height / 2 - height / 7, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		if (x >= finalWidth + 56 - width/7) {
+			try {
+				timer.stop();
+				Thread.sleep(1000);
+				if(finalWidth == widthPath) {
+					//Game.getInstance().changePanel(new WinPanel(height, width));
+					LevelTester.changePanel(new WinPanel(height, width));
+				}
+				else {
+					LevelTester.changePanel(new LoosePanel());
+					//Game.getInstance().changePanel(new LoosePanel());
+				}
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return;
+		} else if (x >= width) {
+			LevelTester.changePanel(new LoosePanel());
+			//Game.getInstance().changePanel(new LoosePanel());
+			return;
+		}
+	}
+	
+	private void drawTrainAnimation(Graphics2D g2d) {
+
+		g2d.setColor(Color.white);
+		g2d.setFont(new Font("Monospaced", Font.BOLD, 20));
+		g2d.drawLine(50, height / 2, width - 50, height / 2);
+		g2d.drawString("v = 180 км/год", width - 200, 50);
+		g2d.drawString("t = 1 хв", width - 200, 65);
+		g2d.drawString("s = "+answer +" м", width - 200, 80);
+
+		x -= 7;
+		
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("static/train.png"));
+			Image dimg = myPicture.getScaledInstance(width / 6, height / 7, Image.SCALE_SMOOTH);
+			g2d.drawImage(dimg, x, height / 2 - height / 7, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		if (x+10 <= width-finalWidth-50) {
+			try {
+				timer.stop();
+				Thread.sleep(1000);
+				if(finalWidth == widthPath) {
+					//Game.getInstance().changePanel(new WinPanel(height, width));
+					LevelTester.changePanel(new WinPanel(height, width));
+				}
+				else {
+					LevelTester.changePanel(new LoosePanel());
+					//Game.getInstance().changePanel(new LoosePanel());
+				}
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return;
+		} else if (x <= 0) {
+			LevelTester.changePanel(new LoosePanel());
+			//Game.getInstance().changePanel(new LoosePanel());
+			return;
+		}
+	}
+	
+	private void drawPlain1Animation(Graphics2D g2d) {
+
+		g2d.setColor(Color.white);
+		g2d.drawLine((int)widthSpace, 100, (int) widthSpace, height-100);
+		g2d.drawLine((int)(width-widthSpace), 100, (int) (width-widthSpace), height-100);
+		g2d.drawLine((int)widthSpace, height-100, (int) (width-widthSpace), height-100);
+		
+
+		
+		if(first) {
+			BufferedImage myPicture;
+			try {
+				myPicture = ImageIO.read(new File("static/plain.png"));
+				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
+		
+				g2d.drawImage(dimg,(int) (widthSpace - width/14), y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else if(second) {
+			BufferedImage myPicture;
+			try {
+				myPicture = ImageIO.read(new File("static/plain.png"));
+				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
+		
+				g2d.drawImage(dimg,(int) (widthSpace +x), height-100-height/14, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else if(third){
+			BufferedImage myPicture;
+			try {
+				myPicture = ImageIO.read(new File("static/plain.png"));
+				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
+		
+				g2d.drawImage(dimg,(int) (width-widthSpace - width/14), y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			BufferedImage myPicture;
+			try {
+				myPicture = ImageIO.read(new File("static/plain.png"));
+				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
+		
+				g2d.drawImage(dimg,(int) x, y, null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			g2d.setColor(Color.red);
+			g2d.drawLine((int)widthSpace, 100, (int) distX, 100);
+			
+		}
+
+		if (distX >= finalWidth + widthSpace) {
+			try {
+				timer.stop();
+				Thread.sleep(1000);
+				if(finalWidth == widthPath) {
+					//Game.getInstance().changePanel(new WinPanel(height, width));
+					LevelTester.changePanel(new WinPanel(height, width));
+				}
+				else {
+					LevelTester.changePanel(new LoosePanel());
+					//Game.getInstance().changePanel(new LoosePanel());
+				}
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return;
+		} else if (distX >= width) {
+			LevelTester.changePanel(new LoosePanel());
+			//Game.getInstance().changePanel(new LoosePanel());
+			return;
+		}
+		
+		if(first) {
+			if(y>=height-100-height/7) {
+				first = false;
+				second = true;
+				x = (int)widthSpace;
+				y =  height-100-height/7;
+			}else y+=7;
+		} else if(second) {
+			if(x>=width-widthSpace-width/7) {
+				second = false;
+				third = true;
+				x = (int) (width-widthSpace-width/14);
+			} else x+=7;
+		} else if(third) {
+			if(y<=100) {
+				third=false;
+				y=100;
+				distX = widthSpace;
+			} else y-=7;
+		} else {
+			distX+=7;
+		}
+	}
+	
 	public void start() {
 		timer.start();
 	}
