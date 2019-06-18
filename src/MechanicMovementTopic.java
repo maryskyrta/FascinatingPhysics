@@ -22,6 +22,13 @@ public class MechanicMovementTopic extends Topic {
 	private static int currentInputTask = 0;
 
 	/**
+	 * HINTS TEXT
+	 */
+	public static String[] hints = {
+			"Для того, щоб визначити шлях від магазину до театру, потрібно від шляху від дому до театру відняти шлях від дому до магазину",
+			"Для того, щоб дізнатися який загальний шлях пройшов м'яч, потрібно додати його шлях, який він пролетів при падінні, до шляху, який він пролетів після відбивання" };
+
+	/**
 	 * Constructor
 	 * 
 	 * @param name
@@ -31,10 +38,16 @@ public class MechanicMovementTopic extends Topic {
 		super(name, imagePath);
 	}
 
+	/**
+	 * Add passed level
+	 */
 	public static void levelUp() {
 		currentInputTask++;
 	}
 
+	/**
+	 * Change level to the next one
+	 */
 	public static void getNextLevel() {
 		if (currentInputTask < 2)
 			Game.getInstance().changePanel(new Level(inputAnswerTasks[currentInputTask], levelImages[currentInputTask],
@@ -43,6 +56,10 @@ public class MechanicMovementTopic extends Topic {
 			Game.getInstance().changePanel(new LevelPassedPanel());
 	}
 
+	/**
+	 * 
+	 * @return current level
+	 */
 	public static int getLevel() {
 		return currentInputTask;
 	}
