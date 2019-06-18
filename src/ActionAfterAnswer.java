@@ -213,11 +213,10 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 
 			try {
 				timer.stop();
-				Thread.sleep(2500);
-				if (finalWidth == widthPath)
-					Game.getInstance().changePanel(new WinPanel(height, width));
-				else
-					Game.getInstance().changePanel(new LoosePanel());
+				Thread.sleep(500);
+				if(finalWidth == widthPath) Game.getInstance().changePanel(new WinPanel(height, width));
+				else Game.getInstance().changePanel(new LoosePanel());
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -240,4 +239,5 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		repaint();
 	}
+	
 }
