@@ -14,6 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Topics menu.
+ * 
+ * @author Masha
+ *
+ */
 public class TopicsViewPanel extends JPanel {
 
 	/**
@@ -71,10 +77,11 @@ public class TopicsViewPanel extends JPanel {
 		chooseTopicPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TheoryPanel pan = new TheoryPanel(Game.topics[Game.currentTopic].getName(),
-						Game.theoryPaths[Game.currentTopic]);
-				Game.theoryPanel = pan;
-				Game.getInstance().changePanel(pan);
+				if (Game.currentTopic == 0 || Game.passedTopics[Game.currentTopic - 1]) {
+					TheoryPanel pan = new TheoryPanel(Game.topics[Game.currentTopic].getName(),
+							Game.theoryPaths[Game.currentTopic]);
+					Game.getInstance().changePanel(pan);
+				}
 			}
 		});
 		GridBagConstraints gbc_ChooseTopicPanel = new GridBagConstraints();

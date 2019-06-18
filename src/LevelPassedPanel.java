@@ -27,7 +27,7 @@ public class LevelPassedPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0 };
 		setLayout(gridBagLayout);
 
-		JLabel lblNewLabel = new JLabel("Вітаємо! Ви успішно вивчили тему");
+		JLabel lblNewLabel = new JLabel("Вітаємо, " + Game.name + "! Ви успішно вивчили тему");
 		lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 153, 51));
 		lblNewLabel.setBackground(new Color(0, 0, 0));
@@ -59,8 +59,14 @@ public class LevelPassedPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.passedTopics[Game.currentTopic] = true;
 				Game.currentTopic++;
-				Game.topics[Game.currentTopic].setImagePath("static/circles.jpg");
+				if (Game.currentTopic == 1)
+					Game.topics[Game.currentTopic].setImagePath("static/circles.jpg");
+				else if (Game.currentTopic == 2)
+					Game.topics[Game.currentTopic].setImagePath("static/fluct.png");
+				else
+					Game.currentTopic = 0;
 				Game.getInstance().changePanel(new TopicsViewPanel());
 			}
 		});
