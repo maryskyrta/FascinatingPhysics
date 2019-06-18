@@ -42,20 +42,20 @@ public class Level extends JPanel {
 		JTextPane task = new JTextPane();
 		task.setForeground(new Color(255, 255, 255));
 		task.setBackground(new Color(0, 0, 0));
-		task.setFont(new Font("Monospaced", Font.BOLD, 16));
+		task.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		task.setText(this.taskString);
 
 		userAnswer = new JTextField();
-		userAnswer.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		userAnswer.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		userAnswer.setColumns(10);
 
 		JLabel expectedLabel = new JLabel("x =");
 		expectedLabel.setForeground(Color.WHITE);
-		expectedLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+		expectedLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
 
 		JButton sendAnswer = new JButton("Відповісти");
 		sendAnswer.setForeground(new Color(255, 255, 255));
-		sendAnswer.setFont(new Font("Monospaced", Font.BOLD, 18));
+		sendAnswer.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		sendAnswer.setFocusable(false);
 		sendAnswer.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		sendAnswer.setBorderPainted(false);

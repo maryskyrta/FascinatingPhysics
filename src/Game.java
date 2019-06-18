@@ -10,20 +10,24 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author Masha. Class that starts the game
+ * @author Masha. Main singleton class that controls game flow and stores
+ *         information.
  *
  */
 public class Game extends JFrame implements MouseListener {
 
+	public static String name;
 	public static TheoryPanel theoryPanel;
 	private boolean soundEnabled = true;
 	private JFrame frame;
 	private static BufferedImage logoImage;
 	private JPanel panel;
 	private static Game game = null;
+	// Game topics
 	public static Topic[] topics = { new MechanicMovementTopic("Механічний рух", "static/mechanics.png"),
 			new CircleMovementTopic("Рух по колу", "static/lock.png"),
 			new FluctuationsMovementTopic("Коливальний рух", "static/lock.png") };
+	// Paths to theory images
 	public static String[] theoryPaths = { "static/mechmovtheory.png" };
 	public static int currentTopic = 0;
 
@@ -43,7 +47,8 @@ public class Game extends JFrame implements MouseListener {
 			e.printStackTrace();
 		}
 		frame.setIconImage(logoImage);
-		panel = new StartPanel();
+		// panel = new StartPanel();
+		panel = new NameInputPanel();
 		frame.add(panel);
 
 	}

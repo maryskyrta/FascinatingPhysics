@@ -121,7 +121,7 @@ public class TopicsViewPanel extends JPanel {
 		gbc_nextTopic.gridy = 1;
 		this.add(nextTopic, gbc_nextTopic);
 		JLabel title = new JLabel("Теми");
-		title.setForeground(new Color(255, 255, 255));
+		title.setForeground(new Color(204, 0, 255));
 		title.setFont(new Font("Monospaced", Font.PLAIN, 34));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_title = new GridBagConstraints();

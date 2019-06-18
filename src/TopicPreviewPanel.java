@@ -32,7 +32,7 @@ public class TopicPreviewPanel extends JPanel {
 		add(logo, gbc_logo);
 
 		JLabel lblNewLabel = new JLabel(Game.topics[Game.currentTopic].getName());
-		lblNewLabel.setForeground(new Color(255, 153, 0));
+		lblNewLabel.setForeground(new Color(204, 0, 255));
 		lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 26));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.CENTER;

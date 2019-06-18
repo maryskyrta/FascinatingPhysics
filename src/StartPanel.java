@@ -15,9 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Masha. Game start panel.
+ *
+ */
 public class StartPanel extends JPanel {
-
-	private int buttonHeight = 150;
 
 	/**
 	 * Create the panel.
@@ -28,7 +31,7 @@ public class StartPanel extends JPanel {
 		setLayout(gridBagLayout);
 
 		JButton startGame = new JButton("Почати гру");
-		startGame.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		startGame.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		startGame.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -57,9 +60,9 @@ public class StartPanel extends JPanel {
 
 		JLabel lblFascinatinphysics = new JLabel("Fascinating Physics");
 		lblFascinatinphysics.setForeground(new Color(255, 255, 255));
-		lblFascinatinphysics.setFont(new Font("Monospaced", Font.PLAIN, 30));
+		lblFascinatinphysics.setFont(new Font("Monospaced", Font.PLAIN, 34));
 		GridBagConstraints gbc_lblFascinatinphysics = new GridBagConstraints();
-		gbc_lblFascinatinphysics.insets = new Insets(10, 10, 10, 10);
+		gbc_lblFascinatinphysics.insets = new Insets(10, 10, 10, 20);
 		gbc_lblFascinatinphysics.gridx = 0;
 		gbc_lblFascinatinphysics.gridy = 0;
 		add(lblFascinatinphysics, gbc_lblFascinatinphysics);
@@ -74,7 +77,7 @@ public class StartPanel extends JPanel {
 
 		// JButton userInfo = new JButton("");
 		JButton settings = new JButton("Налаштування");
-		settings.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		settings.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		settings.setFocusable(false);
 		settings.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		settings.setBorderPainted(false);
@@ -107,7 +110,7 @@ public class StartPanel extends JPanel {
 		gbc_settings.gridy = 2;
 		this.add(settings, gbc_settings);
 		JButton exit = new JButton("Вийти");
-		exit.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		exit.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		exit.setFocusable(false);
 		exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		exit.setBorderPainted(false);
