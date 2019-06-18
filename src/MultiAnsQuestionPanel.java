@@ -253,6 +253,8 @@ public class MultiAnsQuestionPanel extends JPanel {
 	private void processCorrectAnswer() {
 		if (Game.currentTopic == 0)
 			MechanicMovementTopic.getNextPanel(true);
+		else if (Game.currentTopic == 1)
+			PathTopic.getNextPanel(true);
 	}
 
 }

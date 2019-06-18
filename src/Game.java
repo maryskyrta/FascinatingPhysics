@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  */
 public class Game extends JFrame implements MouseListener {
 
+	public static boolean[] passedTopics = { false, false, false };
 	public static String name;
 	public static TheoryPanel theoryPanel;
 	private boolean soundEnabled = true;
@@ -25,10 +26,10 @@ public class Game extends JFrame implements MouseListener {
 	private static Game game = null;
 	// Game topics
 	public static Topic[] topics = { new MechanicMovementTopic("Механічний рух", "static/mechanics.png"),
-			new CircleMovementTopic("Рух по колу", "static/lock.png"),
-			new FluctuationsMovementTopic("Коливальний рух", "static/lock.png") };
+			new PathTopic("Шлях, траекторія, переміщення", "static/lock.png"),
+			new FluctuationsMovementTopic("Прямолінійний рівномірний рух", "static/lock.png") };
 	// Paths to theory images
-	public static String[] theoryPaths = { "static/mechmovtheory.png" };
+	public static String[] theoryPaths = { "static/mechmovtheory.png", "static/paththeory.png" };
 	public static int currentTopic = 0;
 
 	/**

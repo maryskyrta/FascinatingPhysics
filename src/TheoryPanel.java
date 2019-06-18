@@ -99,8 +99,13 @@ public class TheoryPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// if (Game.currentTopic == 0)
-				MechanicMovementTopic.getNextPanel(false);
+				int cur = Game.currentTopic;
+				if (cur == 0)
+					MechanicMovementTopic.getNextPanel(false);
+				else if (cur == 1) {
+					PathTopic.getNextPanel(false);
+				}
+
 			}
 		});
 		button.addMouseListener(new MouseAdapter() {
