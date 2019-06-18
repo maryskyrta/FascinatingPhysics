@@ -11,7 +11,7 @@ public class AccelerationMovementTopic extends Topic {
 					"Рух, при якому за будь-які рівні проміжки часу\n швидкість змінюється однаково, називається",
 					"рівномірним", "рівноприскореним", "прямолінійним", "безперервним", "рівноприскореним"),
 			new TestQuestion(
-					"Відношення зміни швидкості тіла до інтервалу часу, за який ця зміна відбулася, називається",
+					"Відношення зміни швидкості тіла до інтервалу часу,\n за який ця зміна відбулася, називається",
 					"сповільнення", "переміщення", "прискорення", "шлях", "прискорення"),
 			new TestQuestion("Прискорення позначається літерою", "v", "S", "t", "a", "a") };
 
@@ -38,9 +38,7 @@ public class AccelerationMovementTopic extends Topic {
 		if (answered)
 			currentTestTask++;
 		if (currentTestTask >= tests.length) {
-			/*
-			 * Add input levels here
-			 */
+			Game.getInstance().changePanel(new LevelPassedPanel());
 		} else
 			Game.getInstance().changePanel(new MultiAnsQuestionPanel(tests[currentTestTask]));
 	}
@@ -48,7 +46,7 @@ public class AccelerationMovementTopic extends Topic {
 	/**
 	 * Set levels to 0
 	 */
-	public void clean() {
+	public static void clean() {
 		currentTestTask = 0;
 		currentInputTask = 0;
 	}

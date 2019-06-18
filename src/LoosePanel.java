@@ -52,7 +52,10 @@ public class LoosePanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MechanicMovementTopic.getNextLevel();
+				if (Game.currentTopic == 0)
+					MechanicMovementTopic.getNextLevel();
+				else if (Game.currentTopic == 1)
+					PathTopic.getNextLevel();
 			}
 		});
 

@@ -61,12 +61,16 @@ public class LevelPassedPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Game.passedTopics[Game.currentTopic] = true;
 				Game.currentTopic++;
-				if (Game.currentTopic == 1)
+				if (Game.currentTopic == 1) {
+					MechanicMovementTopic.clean();
 					Game.topics[Game.currentTopic].setImagePath("static/circles.jpg");
-				else if (Game.currentTopic == 2)
+				} else if (Game.currentTopic == 2) {
+					PathTopic.clean();
 					Game.topics[Game.currentTopic].setImagePath("static/fluct.png");
-				else
+				} else {
 					Game.currentTopic = 0;
+					AccelerationMovementTopic.clean();
+				}
 				Game.getInstance().changePanel(new TopicsViewPanel());
 			}
 		});

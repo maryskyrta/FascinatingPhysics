@@ -74,51 +74,60 @@ public class Level extends JPanel {
 
 		JPanel im = new JPanel();
 		im.setBackground(new Color(0, 0, 0));
-		
+
 		JButton hint = new JButton();
 		JLabel label = new JLabel();
-		hint.setIcon(new ImageIcon("static/lamp3.png"));
-		
+		hint.setIcon(new ImageIcon("static/lamp.png"));
+		hint.setBackground(Color.BLACK);
+		hint.setFocusable(false);
+		hint.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		hint.setBorderPainted(false);
+		hint.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String message = "";
+				if (Game.currentTopic == 0)
+					message = MechanicMovementTopic.getHint();
+				else if (Game.currentTopic == 1)
+					message = PathTopic.getHint();
+				JOptionPane.showMessageDialog(null, message, "Підказка", JOptionPane.OK_OPTION);
+			}
+		});
+
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(208)
-							.addComponent(expectedLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(sendAnswer))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(28)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup()
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup().addGap(208)
+								.addComponent(expectedLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(sendAnswer))
+						.addGroup(groupLayout.createSequentialGroup().addGap(28).addGroup(groupLayout
+								.createParallelGroup(Alignment.LEADING)
 								.addComponent(im, GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(task, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(hint, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(37, GroupLayout.PREFERRED_SIZE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(26, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(task, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-						.addComponent(hint, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(im, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(sendAnswer))
-						.addComponent(expectedLabel))
-					.addGap(59))
-		);
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(task, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+										.addGap(18).addComponent(hint, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE)))))
+				.addContainerGap(37, GroupLayout.PREFERRED_SIZE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(task, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+								.addComponent(hint, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+						.addGap(18).addComponent(im, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(userAnswer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(sendAnswer))
+								.addComponent(expectedLabel))
+						.addGap(59)));
 		setLayout(groupLayout);
 
 		BufferedImage myPicture;
@@ -142,9 +151,9 @@ public class Level extends JPanel {
 					im.removeAll();
 					sendAnswer.setVisible(false);
 					im.setVisible(true);
-				//	Game.getInstance().visible();
+					// Game.getInstance().visible();
 					im.add(new ActionAfterAnswer(ans, rightAnswer));
-					//LevelTester
+					// LevelTester
 
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "Будь ласка. введіть чилсо, яке більше або дорівнює 0.",

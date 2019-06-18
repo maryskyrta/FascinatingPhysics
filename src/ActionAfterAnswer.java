@@ -17,8 +17,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * 
+ * @author Daryna. Class for drawing animations.
+ *
+ */
 public class ActionAfterAnswer extends JPanel implements ActionListener {
-	
+
 	private double answer;
 	private double rightAnswer;
 
@@ -29,7 +34,6 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	private double widthPath;
 	private int x;
 	private int y;
-	private int curLevel;
 
 	private double indent;
 	private double biggerH;
@@ -53,92 +57,96 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	private double sinA;
 	private double bigC = 0;
 	private double finalX;
-	
+
 	private double widthSpace;
 	private double yDist;
 	private boolean first = true;
 	private boolean second = false;
 	private boolean third = false;
 	private double distX;
-	
 
 	public ActionAfterAnswer(double answer, double rightAnswer) {
 		this.answer = answer;
 		this.rightAnswer = rightAnswer;
-		
-		//curLevel = MechanicMovementTopic.getLevel();
-        curLevel = 4;
-		switch (curLevel) {
-		case 0:
-			x = 100;
-			timer = new Timer(5, this);
-			widthPath = width - x - 110 - (width / 6);
-			finalWidth = (int) (answer * (widthPath) / rightAnswer);
-			break;
-		case 1:
-			timer = new Timer(50, this);
-			ballSize = height / 12;
-			biggerH = 2 * height / 3;
-			biggerA = 2 * biggerH / 3;
-			smallerA = biggerH / 3;
-			biggerC = Math.sqrt(biggerH * biggerH + (biggerA * biggerA));
-			smallerC = 2 * biggerC / 3;
-			c = biggerC + smallerC;
-			smallerH = Math.sqrt(smallerC * smallerC - (smallerA * smallerA));
-			widthPath = c;
-			finalWidth = answer * c / rightAnswer;
 
-			double a = smallerA + biggerA;
+		if (Game.currentTopic == 0) {
+			int curLevel = MechanicMovementTopic.getLevel();
+			switch (curLevel) {
+			case 0:
+				x = 100;
+				timer = new Timer(5, this);
+				widthPath = width - x - 110 - (width / 6);
+				finalWidth = (int) (answer * (widthPath) / rightAnswer);
+				break;
+			case 1:
+				timer = new Timer(50, this);
+				ballSize = height / 12;
+				biggerH = 2 * height / 3;
+				biggerA = 2 * biggerH / 3;
+				smallerA = biggerH / 3;
+				biggerC = Math.sqrt(biggerH * biggerH + (biggerA * biggerA));
+				smallerC = 2 * biggerC / 3;
+				c = biggerC + smallerC;
+				smallerH = Math.sqrt(smallerC * smallerC - (smallerA * smallerA));
+				widthPath = c;
+				finalWidth = answer * c / rightAnswer;
 
-			beginBiggerArrX = (width - a) / 2 + a;
-			beginBiggerArrY = height / 6;
-			beginSmallerArrX = beginBiggerArrX - biggerA;
-			beginSmallerArrY = beginBiggerArrY + biggerH;
-			endSmallerArrX = beginBiggerArrX - a;
-			endSmallerArrY = beginSmallerArrY - smallerH;
+				double a = smallerA + biggerA;
 
-			ballX = beginBiggerArrX - (ballSize / 2);
-			ballY = beginBiggerArrY - ballSize / 2;
+				beginBiggerArrX = (width - a) / 2 + a;
+				beginBiggerArrY = height / 6;
+				beginSmallerArrX = beginBiggerArrX - biggerA;
+				beginSmallerArrY = beginBiggerArrY + biggerH;
+				endSmallerArrX = beginBiggerArrX - a;
+				endSmallerArrY = beginSmallerArrY - smallerH;
 
-			currentC = 0;
-			sinB = biggerH / biggerC;
-			sinA = smallerH / smallerC;
+				ballX = beginBiggerArrX - (ballSize / 2);
+				ballY = beginBiggerArrY - ballSize / 2;
 
-			if (finalWidth > biggerC) {
-				double h = finalWidth - biggerC;
-				double y = sinA * h;
-				finalX = beginBiggerArrX - Math.sqrt(h * h - y * y) - ballSize / 2 - biggerA;
-			} else {
-				double y = sinB * finalWidth;
-				finalX = beginBiggerArrX - Math.sqrt(finalWidth * finalWidth - y * y) - ballSize / 2;
+				currentC = 0;
+				sinB = biggerH / biggerC;
+				sinA = smallerH / smallerC;
+
+				if (finalWidth > biggerC) {
+					double h = finalWidth - biggerC;
+					double y = sinA * h;
+					finalX = beginBiggerArrX - Math.sqrt(h * h - y * y) - ballSize / 2 - biggerA;
+				} else {
+					double y = sinB * finalWidth;
+					finalX = beginBiggerArrX - Math.sqrt(finalWidth * finalWidth - y * y) - ballSize / 2;
+				}
+
+				break;
 			}
+		} else if (Game.currentTopic == 1) {
+			int curLevel = PathTopic.getLevel();
+			switch (curLevel) {
+			case 0:
+				x = 50;
+				timer = new Timer(5, this);
+				widthPath = width - 100;
+				double ans = 2 * answer;
+				finalWidth = (int) (ans * (widthPath) / 1200);
+				break;
+			case 1:
+				x = width - 50 - width / 6;
+				timer = new Timer(5, this);
+				widthPath = width - 100;
+				finalWidth = (int) (answer * (widthPath) / rightAnswer);
+				break;
+			case 2:
+				timer = new Timer(5, this);
+				y = 100;
+				yDist = height - 200;
+				widthPath = 60 * yDist / 25;
+				widthSpace = (width - widthPath) / 2;
 
-			break;
-		case 2:
-			x = 50;
-			timer = new Timer(5, this);
-			widthPath = width - 100;
-			double ans = 2*answer;
-			finalWidth = (int) (ans * (widthPath) / 1200);
-			break;
-		case 3:
-			x = width-50 - width/6;
-			timer = new Timer(5, this);
-			widthPath = width - 100;
-			finalWidth = (int) (answer * (widthPath) / rightAnswer);
-			break;
-		case 4:
-			timer = new Timer(5, this);
-			y=100;
-			yDist = height-200;
-			widthPath = 60*yDist/25;
-			widthSpace = (width-widthPath)/2;
-			
-			finalWidth = (int) (answer * (widthPath) / rightAnswer);
-			
-			break;
-		default:
-			break;
+				finalWidth = (int) (answer * (widthPath) / rightAnswer);
+
+				break;
+			default:
+				break;
+			}
 		}
 
 		setPreferredSize(new Dimension(width, height));
@@ -146,34 +154,34 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		timer.start();
 	}
 
+	/**
+	 * Draw level animation
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.black);
 		g.fillRect(0, 0, width, height);
+		if (Game.currentTopic == 0) {
+			int level = MechanicMovementTopic.getLevel();
+			if (level == 0)
+				drawCarAnimation(g2d);
+			else
+				drawBallAnimation(g2d);
+		}
+		if (Game.currentTopic == 1) {
+			int level = PathTopic.getLevel();
+			if (level == 0)
+				drawPlainAnimation(g2d);
 
-		switch (curLevel) {
-		case 0:
-			drawCarAnimation(g2d);
-			break;
-		case 1:
-			drawBallAnimation(g2d);
-			break;
-		case 2:
-			drawPlainAnimation(g2d);
-			break;
-		case 3:
-			drawTrainAnimation(g2d);
-			break;
-		case 4:
-			drawPlain1Animation(g2d);
-		default:
-			break;
+			else if (level == 1)
+				drawTrainAnimation(g2d);
+			else
+				drawPlain1Animation(g2d);
 		}
 		setVisible(true);
-		LevelTester.visible();
-		//Game.getInstance().visible();
+		Game.getInstance().visible();
 	}
 
 	private void drawBallAnimation(Graphics2D g2d) {
@@ -248,7 +256,7 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		x += 7;
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File("static/plain.png"));
+			myPicture = ImageIO.read(new File("static/car.png"));
 			Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
 			g2d.drawImage(dimg, x, height / 2 - height / 7, null);
 		} catch (IOException e) {
@@ -261,8 +269,10 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			try {
 				timer.stop();
 				Thread.sleep(500);
-				if(finalWidth == widthPath) Game.getInstance().changePanel(new WinPanel(height, width));
-				else Game.getInstance().changePanel(new LoosePanel());
+				if (finalWidth == widthPath)
+					Game.getInstance().changePanel(new WinPanel(height, width));
+				else
+					Game.getInstance().changePanel(new LoosePanel());
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -274,42 +284,39 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		}
 	}
 
-	
 	private void drawPlainAnimation(Graphics2D g2d) {
 
 		g2d.setColor(Color.white);
 		g2d.setFont(new Font("Monospaced", Font.BOLD, 20));
 		g2d.drawLine(50, height / 2, width - 50, height / 2);
-		g2d.drawString("v = "+answer+" км/год", 50, 50);
+		g2d.drawString("v = " + answer + " км/год", 50, 50);
 		g2d.drawString("t = 2 год", 50, 65);
-		
 
 		x += 7;
-		double curS = (1200*(x+50))/widthPath;
-		if(curS>2*answer) g2d.drawString("s = "+(int)2*answer +" км", 50, 80);
-		else g2d.drawString("s = "+(int)curS +" км", 50, 80);
-		
+		double curS = (1200 * (x + 50)) / widthPath;
+		if (curS > 2 * answer)
+			g2d.drawString("s = " + 2 * answer + " км", 50, 80);
+		else
+			g2d.drawString("s = " + (int) curS + " км", 50, 80);
+
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("static/plain.png"));
 			Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
-	
+
 			g2d.drawImage(dimg, x, height / 2 - height / 7, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		if (x >= finalWidth + 56 - width/7) {
+		if (x >= finalWidth + 56 - width / 7) {
 			try {
 				timer.stop();
 				Thread.sleep(1000);
-				if(finalWidth == widthPath) {
-					//Game.getInstance().changePanel(new WinPanel(height, width));
-					LevelTester.changePanel(new WinPanel(height, width));
-				}
-				else {
-					LevelTester.changePanel(new LoosePanel());
-					//Game.getInstance().changePanel(new LoosePanel());
+				if (finalWidth == widthPath) {
+					Game.getInstance().changePanel(new WinPanel(height, width));
+				} else {
+					Game.getInstance().changePanel(new LoosePanel());
 				}
 
 			} catch (InterruptedException e) {
@@ -317,12 +324,11 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			}
 			return;
 		} else if (x >= width) {
-			LevelTester.changePanel(new LoosePanel());
-			//Game.getInstance().changePanel(new LoosePanel());
+			Game.getInstance().changePanel(new LoosePanel());
 			return;
 		}
 	}
-	
+
 	private void drawTrainAnimation(Graphics2D g2d) {
 
 		g2d.setColor(Color.white);
@@ -330,10 +336,10 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 		g2d.drawLine(50, height / 2, width - 50, height / 2);
 		g2d.drawString("v = 180 км/год", width - 200, 50);
 		g2d.drawString("t = 1 хв", width - 200, 65);
-		g2d.drawString("s = "+answer +" м", width - 200, 80);
+		g2d.drawString("s = " + answer + " м", width - 200, 80);
 
 		x -= 7;
-		
+
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("static/train.png"));
@@ -343,17 +349,14 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 
-		if (x+10 <= width-finalWidth-50) {
+		if (x + 10 <= width - finalWidth - 50) {
 			try {
 				timer.stop();
 				Thread.sleep(1000);
-				if(finalWidth == widthPath) {
-					//Game.getInstance().changePanel(new WinPanel(height, width));
-					LevelTester.changePanel(new WinPanel(height, width));
-				}
-				else {
-					LevelTester.changePanel(new LoosePanel());
-					//Game.getInstance().changePanel(new LoosePanel());
+				if (finalWidth == widthPath) {
+					Game.getInstance().changePanel(new WinPanel(height, width));
+				} else {
+					Game.getInstance().changePanel(new LoosePanel());
 				}
 
 			} catch (InterruptedException e) {
@@ -361,48 +364,45 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			}
 			return;
 		} else if (x <= 0) {
-			LevelTester.changePanel(new LoosePanel());
-			//Game.getInstance().changePanel(new LoosePanel());
+			Game.getInstance().changePanel(new LoosePanel());
 			return;
 		}
 	}
-	
+
 	private void drawPlain1Animation(Graphics2D g2d) {
 
 		g2d.setColor(Color.white);
-		g2d.drawLine((int)widthSpace, 100, (int) widthSpace, height-100);
-		g2d.drawLine((int)(width-widthSpace), 100, (int) (width-widthSpace), height-100);
-		g2d.drawLine((int)widthSpace, height-100, (int) (width-widthSpace), height-100);
-		
+		g2d.drawLine((int) widthSpace, 100, (int) widthSpace, height - 100);
+		g2d.drawLine((int) (width - widthSpace), 100, (int) (width - widthSpace), height - 100);
+		g2d.drawLine((int) widthSpace, height - 100, (int) (width - widthSpace), height - 100);
 
-		
-		if(first) {
+		if (first) {
 			BufferedImage myPicture;
 			try {
 				myPicture = ImageIO.read(new File("static/plain.png"));
 				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
-		
-				g2d.drawImage(dimg,(int) (widthSpace - width/14), y, null);
+
+				g2d.drawImage(dimg, (int) (widthSpace - width / 14), y, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else if(second) {
+		} else if (second) {
 			BufferedImage myPicture;
 			try {
 				myPicture = ImageIO.read(new File("static/plain.png"));
 				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
-		
-				g2d.drawImage(dimg,(int) (widthSpace +x), height-100-height/14, null);
+
+				g2d.drawImage(dimg, (int) (widthSpace + x), height - 100 - height / 14, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else if(third){
+		} else if (third) {
 			BufferedImage myPicture;
 			try {
 				myPicture = ImageIO.read(new File("static/plain.png"));
 				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
-		
-				g2d.drawImage(dimg,(int) (width-widthSpace - width/14), y, null);
+
+				g2d.drawImage(dimg, (int) (width - widthSpace - width / 14), y, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -411,27 +411,24 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			try {
 				myPicture = ImageIO.read(new File("static/plain.png"));
 				Image dimg = myPicture.getScaledInstance(width / 7, height / 7, Image.SCALE_SMOOTH);
-		
-				g2d.drawImage(dimg,(int) x, y, null);
+
+				g2d.drawImage(dimg, x, y, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			g2d.setColor(Color.red);
-			g2d.drawLine((int)widthSpace, 100, (int) distX, 100);
-			
+			g2d.drawLine((int) widthSpace, 100, (int) distX, 100);
+
 		}
 
 		if (distX >= finalWidth + widthSpace) {
 			try {
 				timer.stop();
 				Thread.sleep(1000);
-				if(finalWidth == widthPath) {
-					//Game.getInstance().changePanel(new WinPanel(height, width));
-					LevelTester.changePanel(new WinPanel(height, width));
-				}
-				else {
-					LevelTester.changePanel(new LoosePanel());
-					//Game.getInstance().changePanel(new LoosePanel());
+				if (finalWidth == widthPath) {
+					Game.getInstance().changePanel(new WinPanel(height, width));
+				} else {
+					Game.getInstance().changePanel(new LoosePanel());
 				}
 
 			} catch (InterruptedException e) {
@@ -439,35 +436,37 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 			}
 			return;
 		} else if (distX >= width) {
-			LevelTester.changePanel(new LoosePanel());
-			//Game.getInstance().changePanel(new LoosePanel());
+			Game.getInstance().changePanel(new LoosePanel());
 			return;
 		}
-		
-		if(first) {
-			if(y>=height-100-height/7) {
+
+		if (first) {
+			if (y >= height - 100 - height / 7) {
 				first = false;
 				second = true;
-				x = (int)widthSpace;
-				y =  height-100-height/7;
-			}else y+=7;
-		} else if(second) {
-			if(x>=width-widthSpace-width/7) {
+				x = (int) widthSpace;
+				y = height - 100 - height / 7;
+			} else
+				y += 7;
+		} else if (second) {
+			if (x >= width - widthSpace - width / 7) {
 				second = false;
 				third = true;
-				x = (int) (width-widthSpace-width/14);
-			} else x+=7;
-		} else if(third) {
-			if(y<=100) {
-				third=false;
-				y=100;
+				x = (int) (width - widthSpace - width / 14);
+			} else
+				x += 7;
+		} else if (third) {
+			if (y <= 100) {
+				third = false;
+				y = 100;
 				distX = widthSpace;
-			} else y-=7;
+			} else
+				y -= 7;
 		} else {
-			distX+=7;
+			distX += 7;
 		}
 	}
-	
+
 	public void start() {
 		timer.start();
 	}
@@ -480,5 +479,5 @@ public class ActionAfterAnswer extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		repaint();
 	}
-	
+
 }

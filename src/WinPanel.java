@@ -50,8 +50,14 @@ public class WinPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MechanicMovementTopic.levelUp();
-				MechanicMovementTopic.getNextLevel();
+				if (Game.currentTopic == 0) {
+					MechanicMovementTopic.levelUp();
+					MechanicMovementTopic.getNextLevel();
+				} else if (Game.currentTopic == 1) {
+					PathTopic.levelUp();
+					PathTopic.getNextLevel();
+				}
+
 			}
 		});
 
