@@ -26,10 +26,11 @@ public class Game extends JFrame implements MouseListener {
 	private static Game game = null;
 	// Game topics
 	public static Topic[] topics = { new MechanicMovementTopic("Механічний рух", "static/mechanics.png"),
-			new PathTopic("Шлях, траекторія, переміщення", "static/lock.png"),
-			new FluctuationsMovementTopic("Прямолінійний рівномірний рух", "static/lock.png") };
+			new PathTopic("Прямолінійний рівномірний рух", "static/lock.png"),
+			new AccelerationMovementTopic("Рівноприскорений рух", "static/lock.png") };
 	// Paths to theory images
-	public static String[] theoryPaths = { "static/mechmovtheory.png", "static/paththeory.png" };
+	public static String[] theoryPaths = { "static/mechmovtheory.png", "static/paththeory.png",
+			"static/accmovtheory.png" };
 	public static int currentTopic = 0;
 
 	/**

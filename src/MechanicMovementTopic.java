@@ -79,4 +79,12 @@ public class MechanicMovementTopic extends Topic {
 			Game.getInstance().changePanel(new MultiAnsQuestionPanel(tests[currentTestTask]));
 	}
 
+	/**
+	 * Set levels to 0
+	 */
+	public void clean() {
+		currentTestTask = 0;
+		currentInputTask = 0;
+	}
+
 }

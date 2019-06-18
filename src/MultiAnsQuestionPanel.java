@@ -255,6 +255,8 @@ public class MultiAnsQuestionPanel extends JPanel {
 			MechanicMovementTopic.getNextPanel(true);
 		else if (Game.currentTopic == 1)
 			PathTopic.getNextPanel(true);
+		else
+			AccelerationMovementTopic.getNextPanel(true);
 	}
 
 }

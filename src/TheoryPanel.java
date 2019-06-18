@@ -104,6 +104,8 @@ public class TheoryPanel extends JPanel {
 					MechanicMovementTopic.getNextPanel(false);
 				else if (cur == 1) {
 					PathTopic.getNextPanel(false);
+				} else {
+					AccelerationMovementTopic.getNextPanel(false);
 				}
 
 			}

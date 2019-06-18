@@ -86,7 +86,6 @@ public class SettingsPanel extends JPanel {
 
 		textField = new JTextField();
 		textField.setText(Game.name);
-		// textField.setMinimumSize(new Dimension(250, 40));
 		textField.setFont(new Font("Monospaced", Font.PLAIN, 20));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 5, 0, 5);

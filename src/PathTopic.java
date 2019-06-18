@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * Class responsible for second topic
+ *
+ */
 public class PathTopic extends Topic {
 	public static TestQuestion[] tests = {
 			new TestQuestion("Уявна лінія, по якій рухається тіло, називається", "шлях", "переміщення", "траєкторія",
@@ -12,18 +16,16 @@ public class PathTopic extends Topic {
 					"рівномірним", "швидким", "повільним", "рівномірним"),
 			new TestQuestion("Швидкість руху тіла визначається як відношення\n переміщення до ", "проміжку часу",
 					"шляху", "траєкторії", "відстані", "проміжку часу") };
-	/*
-	 * private static String[] inputAnswerTasks = {
-	 * "Щоб доїхати до магазину від дому потрібно здолати 2500 м, а до музичного театру в тому самому напрямку - "
-	 * + "6700 м. Який шлях проїде машина від магазину до театру?",
-	 * "Після того як м'яч випустили на висоті 1.5 м, " +
-	 * "він підскочив на висоту 1м. Який шлях пройшов м'яч?" }; private static
-	 * double rightAnswers[] = { 4200, 2.5 }; private static String[] levelImages =
-	 * { "static/3.png", "static/4.png" };
-	 */
+
 	private static int currentTestTask = 0;
 	private static int currentInputTask = 0;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param name
+	 * @param imagePath
+	 */
 	public PathTopic(String name, String imagePath) {
 		super(name, imagePath);
 		// TODO Auto-generated constructor stub
@@ -44,6 +46,14 @@ public class PathTopic extends Topic {
 			 */
 		} else
 			Game.getInstance().changePanel(new MultiAnsQuestionPanel(tests[currentTestTask]));
+	}
+
+	/**
+	 * Set levels to 0
+	 */
+	public void clean() {
+		currentTestTask = 0;
+		currentInputTask = 0;
 	}
 
 }
